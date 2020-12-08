@@ -6,21 +6,37 @@ from re import compile
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 import logging
+from typing import List
 
 logger.setLevel(logging.INFO)
+
+def break_text_into_sentences(text:str) -> List[str]:
+    sentences = []
+    new_text = ""
+    for i in text:
+        if i == ".":
+            new_text += i
+            sentences.append(new_text.strip())
+            new_text = ""
+        elif i == "\n":
+            new_text += " "
+        else:
+            new_text += i
+    return sentences
 
 def extract_info_from_html(html_content: str):
     soup = BeautifulSoup(html_content, "html.parser")
     speech_content_div_tag = soup.find("div", class_="field-docs-content")
-    # print(type(speech_content_div_tag))
+
     paragraphs = []
     for p_tag in speech_content_div_tag.contents:
         if type(p_tag) == Tag:
             _string = p_tag.string
             if _string:
                 paragraphs.append(_string.strip())
-
-    # print(paragraphs)
+    
+    full_text = " ".join(paragraphs)
+    sentences = break_text_into_sentences(full_text)
 
     president_name_div_tag = soup.find("div", class_="field-title")
     president_name = None
@@ -39,7 +55,7 @@ def extract_info_from_html(html_content: str):
 
     logger.info(f"{president_seq} President of the United States: {president_name}")
 
-    return term_year_start, president_name, paragraphs
+    return term_year_start, president_name, sentences
 
 
 def main():
@@ -51,10 +67,10 @@ def main():
         if r.status_code == 200:
             logger.info(i)
             html_content = r.text
-            term_year_start, president_name, paragraphs = extract_info_from_html(html_content)
+            term_year_start, president_name, sentences = extract_info_from_html(html_content)
             export_path = Path("Inaugural_Addresses") / f"{term_year_start} {president_name}.txt"
             with export_path.open("w") as f:
-                f.write("\n".join(paragraphs))
+                f.write("\n".join(sentences))
             logger.info(f"Exported: {export_path}")
 
         else:
