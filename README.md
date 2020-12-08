@@ -6,3 +6,6 @@
 - [code - tensorflow](https://github.com/lengstrom/fast-style-transfer)
 - https://github.com/zhanghang1989/PyTorch-Multi-Style-Transfer
 - https://github.com/leongatys/PytorchNeuralStyleTransfer
+
+
+- https://www.kaggle.com/adhok93/president-obama
