@@ -62,6 +62,43 @@ def get_word_occurence_map(words: List[str]) -> Dict[str, int]:
     }
     return occurence_map
 
+def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
+    names = list(sorted(master_occurence_map.keys()))
+    total_word_occurence_map = {}
+    for _,v in master_occurence_map.items():
+        for word, num in v.items():
+            if word in total_word_occurence_map:
+                total_word_occurence_map[word] += num
+            else:
+                total_word_occurence_map[word] = num
+    
+    most_frequent_word_list = [k for k in sorted(total_word_occurence_map.keys(), key=lambda x: total_word_occurence_map[x], reverse=True)]
+    csv_data = []
+    for word in most_frequent_word_list:
+        row_data = [word]
+        for president in names:
+            if word in master_occurence_map[president]:
+                row_data.append(master_occurence_map[president][word])
+            else:
+                row_data.append(0)
+        csv_data.append(row_data)
+    names.insert(0, "POTUS")
+    csv_data.insert(0, names)
+
+    csv_string_list = []
+    for row in csv_data:
+        row = [str(i) for i in row]
+        csv_string_list.append(", ".join(row))
+
+    export_path = result_folder / "word_occurence.csv"
+    with export_path.open("w") as f:
+        f.write("\n".join(csv_string_list))
+        logger.debug(f"Exported: {export_path}")
+
+
+    
+    
+
 
 if __name__ == "__main__":
     src_folder = Path(__file__).parent / "Inaugural_Addresses"
@@ -88,9 +125,11 @@ if __name__ == "__main__":
                 for k, v in sorted(
                     word_occurence_map.items(), key=lambda x: x[1], reverse=True
                 )
-                if v > 10 and k not in STOPWORDS
+                if v > 5 and k not in STOPWORDS
             }
             word_occurence_result[filename[:-4]] = word_occurence_map
+
+    get_all_president_word_matrix(word_occurence_result)
 
 
     export_path = result_folder / "word_occurence.json"
