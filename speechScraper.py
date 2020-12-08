@@ -10,7 +10,8 @@ from typing import List
 
 logger.setLevel(logging.INFO)
 
-def break_text_into_sentences(text:str) -> List[str]:
+
+def break_text_into_sentences(text: str) -> List[str]:
     sentences = []
     new_text = ""
     for i in text:
@@ -24,6 +25,7 @@ def break_text_into_sentences(text:str) -> List[str]:
             new_text += i
     return sentences
 
+
 def extract_info_from_html(html_content: str):
     soup = BeautifulSoup(html_content, "html.parser")
     speech_content_div_tag = soup.find("div", class_="field-docs-content")
@@ -34,7 +36,7 @@ def extract_info_from_html(html_content: str):
             _string = p_tag.string
             if _string:
                 paragraphs.append(_string.strip())
-    
+
     full_text = " ".join(paragraphs)
     sentences = break_text_into_sentences(full_text)
 
@@ -43,7 +45,7 @@ def extract_info_from_html(html_content: str):
 
     for i in president_name_div_tag.contents:
         if type(i) == Tag:
-            president_name = (i.contents[0].text)
+            president_name = i.contents[0].text
 
     span_tag = soup.find("span", class_="presidential-ordinal-number")
     president_seq = span_tag.text
@@ -51,7 +53,6 @@ def extract_info_from_html(html_content: str):
     term_year_span_tag = soup.find("span", class_="dates")
     term_year = term_year_span_tag.text.strip()
     term_year_start = term_year[:4]
-
 
     logger.info(f"{president_seq} President of the United States: {president_name}")
 
@@ -67,8 +68,12 @@ def main():
         if r.status_code == 200:
             logger.info(i)
             html_content = r.text
-            term_year_start, president_name, sentences = extract_info_from_html(html_content)
-            export_path = Path("Inaugural_Addresses") / f"{term_year_start} {president_name}.txt"
+            term_year_start, president_name, sentences = extract_info_from_html(
+                html_content
+            )
+            export_path = (
+                Path("Inaugural_Addresses") / f"{term_year_start} {president_name}.txt"
+            )
             with export_path.open("w") as f:
                 f.write("\n".join(sentences))
             logger.info(f"Exported: {export_path}")
@@ -77,5 +82,6 @@ def main():
             logger.error(i)
             logger.error("Unexpected response with non-200 error code")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
