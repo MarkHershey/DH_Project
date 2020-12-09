@@ -16,6 +16,8 @@ import gensim
 
 STOPWORDS = "the of and to in that a with are as be this it is by or".split()
 
+# NOTE: https://radimrehurek.com/gensim/auto_examples/core/run_similarity_queries.html
+
 
 def main():
     doc_names, documents = get_all_documents()
