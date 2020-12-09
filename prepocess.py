@@ -62,17 +62,25 @@ def get_word_occurence_map(words: List[str]) -> Dict[str, int]:
     }
     return occurence_map
 
+
 def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
     names = list(sorted(master_occurence_map.keys()))
     total_word_occurence_map = {}
-    for _,v in master_occurence_map.items():
+    for _, v in master_occurence_map.items():
         for word, num in v.items():
             if word in total_word_occurence_map:
                 total_word_occurence_map[word] += num
             else:
                 total_word_occurence_map[word] = num
-    
-    most_frequent_word_list = [k for k in sorted(total_word_occurence_map.keys(), key=lambda x: total_word_occurence_map[x], reverse=True)]
+
+    most_frequent_word_list = [
+        k
+        for k in sorted(
+            total_word_occurence_map.keys(),
+            key=lambda x: total_word_occurence_map[x],
+            reverse=True,
+        )
+    ]
     csv_data = []
     for word in most_frequent_word_list:
         row_data = [word]
@@ -94,10 +102,6 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
     with export_path.open("w") as f:
         f.write("\n".join(csv_string_list))
         logger.debug(f"Exported: {export_path}")
-
-
-    
-    
 
 
 if __name__ == "__main__":
@@ -131,7 +135,6 @@ if __name__ == "__main__":
 
     get_all_president_word_matrix(word_occurence_result)
 
-
     export_path = result_folder / "word_occurence.json"
     with export_path.open("w") as f:
-        json.dump(word_occurence_result,f, indent=4)
+        json.dump(word_occurence_result, f, indent=4)
