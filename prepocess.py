@@ -3,12 +3,11 @@ import string
 from pathlib import Path
 from typing import List, Dict
 from markkk.logger import logger
+from markkk.encoding import is_ascii
 from collections import OrderedDict
 import nltk
 import json
-
-STOPWORDS = "the of and to in that a with are as be this it is by or".split()
-STOPWORDS = "the of and to in that a with are as be this it is by or for which have not their all i but has its from been on my no they can upon an us should states must them who country may so at more".split()
+from stopwords import NLTK_STOPWORDS
 
 
 def removePunctuations(target):
@@ -43,7 +42,8 @@ def get_word_list_from_lines(lines: List[str]) -> List[str]:
         for word in line_words:
             w = removePunctuations(word).strip()
             if w not in ("", " ", None):
-                words.append(w)
+                if is_ascii(w):
+                    words.append(w)
     return words
 
 
@@ -105,6 +105,24 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
         logger.debug(f"Exported: {export_path}")
 
 
+def get_word_frequency(master_occurence_map: Dict[str, Dict]):
+    names = list(sorted(master_occurence_map.keys()))
+    word_frequency_map = {}
+    for name in names:
+        data = master_occurence_map[name]
+        wordcount = sum(data.values())
+        freq_data = {}
+        for word, count in data.items():
+            freq = count / wordcount
+            freq_data[word] = freq
+        word_frequency_map[name] = freq_data
+
+    export_path = result_folder / "word_frequency.json"
+    with export_path.open("w") as f:
+        json.dump(word_frequency_map, f, indent=4)
+        logger.debug(f"Exported: {export_path}")
+
+
 def generate_data_for_p1(master_occurence_map: Dict[str, Dict]):
     year_name_key = list(sorted(master_occurence_map.keys()))
     # get the latest
@@ -150,11 +168,13 @@ if __name__ == "__main__":
                 for k, v in sorted(
                     word_occurence_map.items(), key=lambda x: x[1], reverse=True
                 )
-                # if v > 5 and k not in STOPWORDS
+                if v > 1 and k not in NLTK_STOPWORDS
             }
             word_occurence_result[filename[:-4]] = word_occurence_map
 
-    generate_data_for_p1(word_occurence_result)
+    # get_all_president_word_matrix(word_occurence_result)
+    # generate_data_for_p1(word_occurence_result)
+    get_word_frequency(word_occurence_result)
 
     export_path = result_folder / "word_occurence.json"
     with export_path.open("w") as f:

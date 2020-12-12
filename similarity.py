@@ -13,6 +13,7 @@ from gensim import corpora
 from gensim import models
 from gensim import similarities
 import gensim
+from stopwords import NLTK_STOPWORDS
 
 STOPWORDS = "the of and to in that a with are as be this it is by or".split()
 
@@ -24,7 +25,8 @@ def main():
 
     # remove common words and tokenize
     texts = [
-        [word for word in gensim.utils.simple_preprocess(doc) if word not in STOPWORDS]
+        [word for word in gensim.utils.simple_preprocess(
+            doc) if word not in NLTK_STOPWORDS]
         for doc in documents
     ]
 
@@ -34,7 +36,8 @@ def main():
         for token in text:
             frequency[token] += 1
 
-    texts = [[token for token in text if frequency[token] > 1] for text in texts]
+    texts = [[token for token in text if frequency[token] > 1]
+             for text in texts]
 
     dictionary = corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
@@ -66,7 +69,18 @@ def main():
 
     logger.debug("Most similar document on top:")
     for doc_position, doc_score in sims:
-        print(f"Similarity: {round(float(doc_score), 3)} | {doc_names[doc_position]}")
+        print(
+            f"Similarity: {round(float(doc_score), 3)} | {doc_names[doc_position]}")
+    for doc_position, doc_score in sims:
+        print(float(doc_score))
+    for doc_position, doc_score in sims:
+        print(doc_names[doc_position])
+
+    with open("results/name_party.json") as f:
+        name_party_map = json.load(f)
+
+    for doc_position, doc_score in sims:
+        print(name_party_map[doc_names[doc_position]])
 
 
 if __name__ == "__main__":
