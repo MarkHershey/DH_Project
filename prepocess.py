@@ -104,9 +104,10 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
         f.write("\n".join(csv_string_list))
         logger.debug(f"Exported: {export_path}")
 
+
 def generate_data_for_p1(master_occurence_map: Dict[str, Dict]):
     year_name_key = list(sorted(master_occurence_map.keys()))
-    # get the latest 
+    # get the latest
     year_name_key = year_name_key[-2:]
 
     directed_connections = ["source,target,value"]
@@ -121,6 +122,7 @@ def generate_data_for_p1(master_occurence_map: Dict[str, Dict]):
     with export_path.open("w") as f:
         f.write("\n".join(directed_connections))
         logger.debug(f"Exported: {export_path}")
+
 
 if __name__ == "__main__":
     src_folder = Path(__file__).parent / "Inaugural_Addresses"
@@ -140,14 +142,15 @@ if __name__ == "__main__":
             logger.info(f"Number of words: {len(words)}")
 
             word_occurence_map = get_word_occurence_map(words)
-            logger.info(f"Number of unique words: {len(word_occurence_map.keys())}")
+            logger.info(
+                f"Number of unique words: {len(word_occurence_map.keys())}")
             # filter stopwords, remove words that once appeared once
             word_occurence_map = {
                 k: v
                 for k, v in sorted(
                     word_occurence_map.items(), key=lambda x: x[1], reverse=True
                 )
-                if v > 5 and k not in STOPWORDS
+                # if v > 5 and k not in STOPWORDS
             }
             word_occurence_result[filename[:-4]] = word_occurence_map
 
