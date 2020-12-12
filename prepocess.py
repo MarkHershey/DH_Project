@@ -8,6 +8,7 @@ import nltk
 import json
 
 STOPWORDS = "the of and to in that a with are as be this it is by or".split()
+STOPWORDS = "the of and to in that a with are as be this it is by or for which have not their all i but has its from been on my no they can upon an us should states must them who country may so at more".split()
 
 
 def removePunctuations(target):
@@ -103,6 +104,23 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
         f.write("\n".join(csv_string_list))
         logger.debug(f"Exported: {export_path}")
 
+def generate_data_for_p1(master_occurence_map: Dict[str, Dict]):
+    year_name_key = list(sorted(master_occurence_map.keys()))
+    # get the latest 
+    year_name_key = year_name_key[-2:]
+
+    directed_connections = ["source,target,value"]
+
+    for president in year_name_key:
+        data = master_occurence_map.get(president)
+        for word, count in data.items():
+            record = president[5:] + "," + word + "," + str(count)
+            directed_connections.append(record)
+
+    export_path = result_folder / "word_directed_graph.csv"
+    with export_path.open("w") as f:
+        f.write("\n".join(directed_connections))
+        logger.debug(f"Exported: {export_path}")
 
 if __name__ == "__main__":
     src_folder = Path(__file__).parent / "Inaugural_Addresses"
@@ -133,7 +151,7 @@ if __name__ == "__main__":
             }
             word_occurence_result[filename[:-4]] = word_occurence_map
 
-    get_all_president_word_matrix(word_occurence_result)
+    generate_data_for_p1(word_occurence_result)
 
     export_path = result_folder / "word_occurence.json"
     with export_path.open("w") as f:
