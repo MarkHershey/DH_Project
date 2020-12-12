@@ -50,36 +50,41 @@ def extract_info_from_html(html_content: str):
     span_tag = soup.find("span", class_="presidential-ordinal-number")
     president_seq = span_tag.text
 
-    term_year_span_tag = soup.find("span", class_="dates")
-    term_year = term_year_span_tag.text.strip()
-    term_year_start = term_year[:4]
+    speech_year_span_tag = soup.find("span", class_="date-display-single")
+    speech_year = speech_year_span_tag.text.strip()
+    speech_year = speech_year[-4:]
 
-    logger.info(f"{president_seq} President of the United States: {president_name}")
+    logger.info(
+        f"{president_seq} President of the United States: {president_name}")
 
-    return term_year_start, president_name, sentences
+    return speech_year, president_name, sentences
 
 
 def main():
-    base_url = "https://www.presidency.ucsb.edu/documents/inaugural-address-"
+    with open("links.txt") as f:
+        links = f.readlines()
 
-    for i in range(53):
-        page_url = base_url + str(i)
+    for link in links:
+        page_url = link.strip()
         r = requests.get(page_url)
         if r.status_code == 200:
-            logger.info(i)
+            logger.info(page_url)
             html_content = r.text
-            term_year_start, president_name, sentences = extract_info_from_html(
+            speech_year, president_name, sentences = extract_info_from_html(
                 html_content
             )
+            logger.info(speech_year)
+            logger.info(president_name)
             export_path = (
-                Path("Inaugural_Addresses") / f"{term_year_start} {president_name}.txt"
+                Path("Inaugural_Addresses") /
+                f"{speech_year} {president_name}.txt"
             )
             with export_path.open("w") as f:
                 f.write("\n".join(sentences))
             logger.info(f"Exported: {export_path}")
 
         else:
-            logger.error(i)
+            logger.error(page_url)
             logger.error("Unexpected response with non-200 error code")
 
 
