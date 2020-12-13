@@ -1,0 +1,490 @@
+{
+    "1789 George Washington": {
+        "Noun": 249,
+        "Adj.": 93,
+        "Verb": 163,
+        "Pronoun": 76,
+        "Modal": 36,
+        "Adv.": 50
+    },
+    "1793 George Washington": {
+        "Noun": 32,
+        "Pronoun": 13,
+        "Verb": 24,
+        "Adv.": 4,
+        "Modal": 4,
+        "Adj.": 6
+    },
+    "1797 John Adams": {
+        "Pronoun": 135,
+        "Verb": 272,
+        "Adv.": 83,
+        "Adj.": 212,
+        "Noun": 612,
+        "Modal": 38
+    },
+    "1801 Thomas Jefferson": {
+        "Noun": 414,
+        "Verb": 231,
+        "Adj.": 161,
+        "Pronoun": 145,
+        "Adv.": 64,
+        "Modal": 46
+    },
+    "1805 Thomas Jefferson": {
+        "Noun": 517,
+        "Verb": 361,
+        "Pronoun": 209,
+        "Adv.": 79,
+        "Adj.": 155,
+        "Modal": 53
+    },
+    "1809 James Madison": {
+        "Verb": 162,
+        "Noun": 277,
+        "Adv.": 62,
+        "Adj.": 107,
+        "Pronoun": 74,
+        "Modal": 15
+    },
+    "1813 James Madison": {
+        "Verb": 198,
+        "Noun": 285,
+        "Adj.": 102,
+        "Pronoun": 93,
+        "Adv.": 49,
+        "Modal": 13
+    },
+    "1817 James Monroe": {
+        "Pronoun": 260,
+        "Modal": 76,
+        "Verb": 533,
+        "Noun": 775,
+        "Adv.": 156,
+        "Adj.": 327
+    },
+    "1821 James Monroe": {
+        "Noun": 1045,
+        "Pronoun": 306,
+        "Modal": 96,
+        "Adv.": 172,
+        "Verb": 740,
+        "Adj.": 369
+    },
+    "1825 John Quincy Adams": {
+        "Noun": 760,
+        "Adj.": 270,
+        "Pronoun": 154,
+        "Verb": 410,
+        "Modal": 27,
+        "Adv.": 71
+    },
+    "1829 Andrew Jackson": {
+        "Noun": 277,
+        "Verb": 145,
+        "Adj.": 99,
+        "Pronoun": 93,
+        "Modal": 36,
+        "Adv.": 39
+    },
+    "1833 Andrew Jackson": {
+        "Noun": 287,
+        "Modal": 26,
+        "Adj.": 81,
+        "Verb": 165,
+        "Pronoun": 96,
+        "Adv.": 50
+    },
+    "1837 Martin van Buren": {
+        "Noun": 837,
+        "Pronoun": 315,
+        "Verb": 620,
+        "Adv.": 239,
+        "Adj.": 359,
+        "Modal": 65
+    },
+    "1841 John Tyler": {
+        "Noun": 420,
+        "Pronoun": 103,
+        "Adj.": 125,
+        "Verb": 241,
+        "Adv.": 61,
+        "Modal": 48
+    },
+    "1841 William Henry Harrison": {
+        "Verb": 1228,
+        "Noun": 1996,
+        "Pronoun": 538,
+        "Adj.": 665,
+        "Modal": 167,
+        "Adv.": 372
+    },
+    "1845 James K. Polk": {
+        "Noun": 1189,
+        "Pronoun": 343,
+        "Verb": 718,
+        "Adj.": 410,
+        "Adv.": 189,
+        "Modal": 115
+    },
+    "1849 Zachary Taylor": {
+        "Verb": 153,
+        "Adj.": 98,
+        "Noun": 269,
+        "Pronoun": 80,
+        "Adv.": 35,
+        "Modal": 27
+    },
+    "1853 Franklin Pierce": {
+        "Pronoun": 246,
+        "Noun": 737,
+        "Verb": 455,
+        "Adj.": 282,
+        "Modal": 80,
+        "Adv.": 168
+    },
+    "1857 James Buchanan": {
+        "Noun": 681,
+        "Pronoun": 159,
+        "Verb": 406,
+        "Modal": 76,
+        "Adv.": 138,
+        "Adj.": 268
+    },
+    "1861 Abraham Lincoln": {
+        "Noun": 779,
+        "Adv.": 227,
+        "Adj.": 296,
+        "Pronoun": 239,
+        "Verb": 584,
+        "Modal": 110
+    },
+    "1865 Abraham Lincoln": {
+        "Noun": 46,
+        "Adj.": 13,
+        "Verb": 35,
+        "Adv.": 10,
+        "Modal": 3,
+        "Pronoun": 11
+    },
+    "1865 Andrew Johnson": {
+        "Noun": 13,
+        "Verb": 10,
+        "Pronoun": 9,
+        "Modal": 2,
+        "Adj.": 3,
+        "Adv.": 1
+    },
+    "1869 Ulysses S. Grant": {
+        "Noun": 248,
+        "Pronoun": 90,
+        "Verb": 186,
+        "Adj.": 95,
+        "Modal": 40,
+        "Adv.": 52
+    },
+    "1873 Ulysses S. Grant": {
+        "Noun": 316,
+        "Pronoun": 102,
+        "Verb": 212,
+        "Adj.": 105,
+        "Adv.": 52,
+        "Modal": 32
+    },
+    "1877 Rutherford B. Hayes": {
+        "Adj.": 230,
+        "Noun": 623,
+        "Pronoun": 128,
+        "Verb": 326,
+        "Adv.": 109,
+        "Modal": 42
+    },
+    "1881 Chester A. Arthur": {
+        "Adj.": 34,
+        "Noun": 115,
+        "Pronoun": 25,
+        "Verb": 73,
+        "Modal": 10,
+        "Adv.": 16
+    },
+    "1881 James A. Garfield": {
+        "Adj.": 249,
+        "Noun": 770,
+        "Pronoun": 168,
+        "Verb": 450,
+        "Adv.": 112,
+        "Modal": 65
+    },
+    "1885 Grover Cleveland": {
+        "Adj.": 142,
+        "Noun": 458,
+        "Pronoun": 99,
+        "Verb": 204,
+        "Modal": 33,
+        "Adv.": 42
+    },
+    "1889 Benjamin Harrison": {
+        "Adj.": 403,
+        "Noun": 1086,
+        "Verb": 654,
+        "Modal": 117,
+        "Adv.": 216,
+        "Pronoun": 266
+    },
+    "1893 Grover Cleveland": {
+        "Pronoun": 174,
+        "Adj.": 151,
+        "Noun": 536,
+        "Verb": 292,
+        "Modal": 48,
+        "Adv.": 73
+    },
+    "1897 William McKinley": {
+        "Adj.": 369,
+        "Noun": 1007,
+        "Modal": 120,
+        "Pronoun": 232,
+        "Verb": 546,
+        "Adv.": 204
+    },
+    "1901 William McKinley": {
+        "Pronoun": 173,
+        "Noun": 557,
+        "Verb": 341,
+        "Adv.": 99,
+        "Adj.": 179,
+        "Modal": 51
+    },
+    "1905 Theodore Roosevelt": {
+        "Pronoun": 89,
+        "Adj.": 91,
+        "Verb": 156,
+        "Noun": 213,
+        "Adv.": 53,
+        "Modal": 22
+    },
+    "1909 William Howard Taft": {
+        "Pronoun": 284,
+        "Adj.": 479,
+        "Noun": 1367,
+        "Verb": 807,
+        "Adv.": 195,
+        "Modal": 140
+    },
+    "1913 Woodrow Wilson": {
+        "Verb": 307,
+        "Noun": 385,
+        "Pronoun": 141,
+        "Adv.": 87,
+        "Adj.": 135,
+        "Modal": 30
+    },
+    "1917 Woodrow Wilson": {
+        "Noun": 314,
+        "Verb": 249,
+        "Adj.": 141,
+        "Pronoun": 171,
+        "Adv.": 70,
+        "Modal": 31
+    },
+    "1921 Warren G. Harding": {
+        "Verb": 510,
+        "Noun": 883,
+        "Pronoun": 253,
+        "Adj.": 295,
+        "Adv.": 107,
+        "Modal": 92
+    },
+    "1925 Calvin Coolidge": {
+        "Pronoun": 294,
+        "Noun": 925,
+        "Modal": 104,
+        "Verb": 673,
+        "Adj.": 378,
+        "Adv.": 212
+    },
+    "1929 Herbert Hoover": {
+        "Verb": 448,
+        "Noun": 1044,
+        "Adv.": 132,
+        "Adj.": 287,
+        "Modal": 77,
+        "Pronoun": 235
+    },
+    "1933 Franklin D. Roosevelt": {
+        "Noun": 425,
+        "Pronoun": 140,
+        "Verb": 257,
+        "Adj.": 174,
+        "Adv.": 68,
+        "Modal": 40
+    },
+    "1937 Franklin D. Roosevelt": {
+        "Noun": 465,
+        "Pronoun": 151,
+        "Verb": 310,
+        "Adj.": 160,
+        "Adv.": 78,
+        "Modal": 33
+    },
+    "1941 Franklin D. Roosevelt": {
+        "Noun": 267,
+        "Verb": 182,
+        "Pronoun": 97,
+        "Adj.": 89,
+        "Modal": 16,
+        "Adv.": 68
+    },
+    "1945 Franklin D. Roosevelt": {
+        "Noun": 135,
+        "Pronoun": 65,
+        "Modal": 21,
+        "Verb": 89,
+        "Adj.": 34,
+        "Adv.": 28
+    },
+    "1949 Harry S. Truman": {
+        "Verb": 366,
+        "Noun": 613,
+        "Pronoun": 170,
+        "Adj.": 198,
+        "Modal": 61,
+        "Adv.": 79
+    },
+    "1953 Dwight D. Eisenhower": {
+        "Pronoun": 205,
+        "Noun": 686,
+        "Verb": 345,
+        "Adj.": 175,
+        "Modal": 36,
+        "Adv.": 81
+    },
+    "1957 Dwight D. Eisenhower": {
+        "Noun": 434,
+        "Pronoun": 150,
+        "Modal": 41,
+        "Verb": 240,
+        "Adv.": 77,
+        "Adj.": 121
+    },
+    "1961 John F. Kennedy": {
+        "Noun": 347,
+        "Adj.": 116,
+        "Pronoun": 108,
+        "Verb": 210,
+        "Adv.": 70,
+        "Modal": 26
+    },
+    "1965 Lyndon B. Johnson": {
+        "Pronoun": 147,
+        "Adj.": 90,
+        "Noun": 356,
+        "Verb": 256,
+        "Adv.": 64,
+        "Modal": 40
+    },
+    "1969 Richard Nixon": {
+        "Noun": 471,
+        "Pronoun": 204,
+        "Adj.": 161,
+        "Verb": 373,
+        "Adv.": 90,
+        "Modal": 43
+    },
+    "1973 Richard Nixon": {
+        "Pronoun": 165,
+        "Noun": 425,
+        "Verb": 314,
+        "Adv.": 107,
+        "Modal": 48,
+        "Adj.": 131
+    },
+    "1977 Jimmy Carter": {
+        "Pronoun": 115,
+        "Noun": 225,
+        "Verb": 180,
+        "Adj.": 113,
+        "Adv.": 78,
+        "Modal": 33
+    },
+    "1981 Ronald Reagan": {
+        "Noun": 611,
+        "Pronoun": 256,
+        "Adj.": 174,
+        "Adv.": 101,
+        "Verb": 426,
+        "Modal": 60
+    },
+    "1985 Ronald Reagan": {
+        "Noun": 642,
+        "Verb": 414,
+        "Pronoun": 220,
+        "Adj.": 201,
+        "Adv.": 112,
+        "Modal": 47
+    },
+    "1989 George Bush": {
+        "Noun": 558,
+        "Adj.": 181,
+        "Verb": 448,
+        "Adv.": 99,
+        "Pronoun": 221,
+        "Modal": 53
+    },
+    "1993 William J. Clinton": {
+        "Pronoun": 173,
+        "Adj.": 111,
+        "Noun": 423,
+        "Verb": 279,
+        "Adv.": 77,
+        "Modal": 35
+    },
+    "1997 William J. Clinton": {
+        "Pronoun": 185,
+        "Adj.": 197,
+        "Noun": 569,
+        "Verb": 310,
+        "Adv.": 102,
+        "Modal": 51
+    },
+    "2001 George W. Bush": {
+        "Noun": 431,
+        "Pronoun": 171,
+        "Verb": 270,
+        "Adj.": 119,
+        "Adv.": 67,
+        "Modal": 37
+    },
+    "2005 George W. Bush": {
+        "Noun": 597,
+        "Verb": 327,
+        "Pronoun": 167,
+        "Adj.": 155,
+        "Adv.": 64,
+        "Modal": 39
+    },
+    "2009 Barack Obama": {
+        "Pronoun": 237,
+        "Adj.": 160,
+        "Noun": 589,
+        "Verb": 425,
+        "Adv.": 119,
+        "Modal": 50
+    },
+    "2013 Barack Obama": {
+        "Noun": 546,
+        "Pronoun": 217,
+        "Verb": 343,
+        "Adv.": 113,
+        "Adj.": 142,
+        "Modal": 53
+    },
+    "2017 Donald J. Trump": {
+        "Adj.": 107,
+        "Noun": 387,
+        "Pronoun": 160,
+        "Verb": 238,
+        "Adv.": 81,
+        "Modal": 48
+    }
+}

@@ -9,16 +9,16 @@ result_folder = Path(__file__).parent / "results"
 
 def get_by_party():
     word_by_party = {}
-    occurence_filepath = result_folder / "word_occurence.json"
-    with occurence_filepath.open() as f:
-        occurence_by_name = json.load(f)
+    occurrence_filepath = result_folder / "word_occurence.json"
+    with occurrence_filepath.open() as f:
+        occurrence_by_name = json.load(f)
 
     name_party_filepath = result_folder / "name_party.json"
     with name_party_filepath.open() as f:
         name_party_map = json.load(f)
 
     # combine into master dict
-    for name, data in occurence_by_name.items():
+    for name, data in occurrence_by_name.items():
         party = name_party_map[name]
         if party not in ("D", "P"):
             continue

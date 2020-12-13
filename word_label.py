@@ -129,6 +129,6 @@ def get_stacked_chart_data2():
 
 
 if __name__ == "__main__":
-    # generate_word_label()
+    generate_word_label()
     # get_stacked_chart_data()
-    get_stacked_chart_data2()
+    # get_stacked_chart_data2()

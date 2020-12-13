@@ -5,7 +5,7 @@ from pathlib import Path
 
 def generate_party_mapping():
     result_folder = Path(__file__).parent / "results"
-    filepath = result_folder / "word_occurence.json"
+    filepath = result_folder / "word_occurrence.json"
     with filepath.open() as f:
         content = json.load(f)
 

@@ -7,7 +7,7 @@ from markkk.encoding import is_ascii
 from collections import OrderedDict
 import nltk
 import json
-from stopwords import NLTK_STOPWORDS
+from stopwords import NLTK_STOPWORDS, SELECTED_WORDS, PRONOUNS
 
 
 def removePunctuations(target):
@@ -64,21 +64,21 @@ def get_word_occurence_map(words: List[str]) -> Dict[str, int]:
     return occurence_map
 
 
-def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
-    names = list(sorted(master_occurence_map.keys()))
-    total_word_occurence_map = {}
-    for _, v in master_occurence_map.items():
+def get_all_president_word_matrix(master_occurrence_map: Dict[str, Dict]):
+    names = list(sorted(master_occurrence_map.keys()))
+    total_word_occurrence_map = {}
+    for _, v in master_occurrence_map.items():
         for word, num in v.items():
-            if word in total_word_occurence_map:
-                total_word_occurence_map[word] += num
+            if word in total_word_occurrence_map:
+                total_word_occurrence_map[word] += num
             else:
-                total_word_occurence_map[word] = num
+                total_word_occurrence_map[word] = num
 
     most_frequent_word_list = [
         k
         for k in sorted(
-            total_word_occurence_map.keys(),
-            key=lambda x: total_word_occurence_map[x],
+            total_word_occurrence_map.keys(),
+            key=lambda x: total_word_occurrence_map[x],
             reverse=True,
         )
     ]
@@ -86,8 +86,8 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
     for word in most_frequent_word_list:
         row_data = [word]
         for president in names:
-            if word in master_occurence_map[president]:
-                row_data.append(master_occurence_map[president][word])
+            if word in master_occurrence_map[president]:
+                row_data.append(master_occurrence_map[president][word])
             else:
                 row_data.append(0)
         csv_data.append(row_data)
@@ -99,17 +99,17 @@ def get_all_president_word_matrix(master_occurence_map: Dict[str, Dict]):
         row = [str(i) for i in row]
         csv_string_list.append(", ".join(row))
 
-    export_path = result_folder / "word_occurence.csv"
+    export_path = result_folder / "word_count_pronouns.csv"
     with export_path.open("w") as f:
         f.write("\n".join(csv_string_list))
         logger.debug(f"Exported: {export_path}")
 
 
-def get_word_frequency(master_occurence_map: Dict[str, Dict]):
-    names = list(sorted(master_occurence_map.keys()))
+def get_word_frequency(master_occurrence_map: Dict[str, Dict]) -> Dict[str, Dict]:
+    names = list(sorted(master_occurrence_map.keys()))
     word_frequency_map = {}
     for name in names:
-        data = master_occurence_map[name]
+        data = master_occurrence_map[name]
         wordcount = sum(data.values())
         freq_data = {}
         for word, count in data.items():
@@ -122,16 +122,18 @@ def get_word_frequency(master_occurence_map: Dict[str, Dict]):
         json.dump(word_frequency_map, f, indent=4)
         logger.debug(f"Exported: {export_path}")
 
+    return word_frequency_map
 
-def generate_data_for_p1(master_occurence_map: Dict[str, Dict]):
-    year_name_key = list(sorted(master_occurence_map.keys()))
+
+def generate_data_for_p1(master_occurrence_map: Dict[str, Dict]):
+    year_name_key = list(sorted(master_occurrence_map.keys()))
     # get the latest
     year_name_key = year_name_key[-2:]
 
     directed_connections = ["source,target,value"]
 
     for president in year_name_key:
-        data = master_occurence_map.get(president)
+        data = master_occurrence_map.get(president)
         for word, count in data.items():
             record = president[5:] + "," + word + "," + str(count)
             directed_connections.append(record)
@@ -146,7 +148,7 @@ if __name__ == "__main__":
     src_folder = Path(__file__).parent / "Inaugural_Addresses"
     result_folder = Path(__file__).parent / "results"
 
-    word_occurence_result = {}
+    word_occurrence_result = {}
 
     for filename in os.listdir(src_folder):
         filepath = src_folder / filename
@@ -168,14 +170,31 @@ if __name__ == "__main__":
                 for k, v in sorted(
                     word_occurence_map.items(), key=lambda x: x[1], reverse=True
                 )
-                if v > 1 and k not in NLTK_STOPWORDS
+                if v > 1 and k in PRONOUNS
             }
-            word_occurence_result[filename[:-4]] = word_occurence_map
+            word_occurrence_result[filename[:-4]] = word_occurence_map
 
-    # get_all_president_word_matrix(word_occurence_result)
-    # generate_data_for_p1(word_occurence_result)
-    get_word_frequency(word_occurence_result)
+    get_all_president_word_matrix(word_occurrence_result)
+    # generate_data_for_p1(word_occurrence_result)
+    # word_frequency_map = get_word_frequency(word_occurrence_result)
+    # get_all_president_word_matrix(word_frequency_map)
 
-    export_path = result_folder / "word_occurence.json"
-    with export_path.open("w") as f:
-        json.dump(word_occurence_result, f, indent=4)
+    # export_path = result_folder / "word_count_NLTKStop.json"
+    # with export_path.open("w") as f:
+    #     json.dump(word_occurrence_result, f, indent=4)
+    
+
+
+
+
+    #######################################################################
+    # # for computer word count per speech only 
+    # count_csv_data = []
+    # for name in sorted(word_occurrence_result.keys()):
+    #     _word_count = sum(word_occurrence_result[name].values())
+    #     count_csv_data.append(",".join([name, str(_word_count)]))
+    # export_path = result_folder / "word_count_total.csv"
+    # with export_path.open("w") as f:
+    #     f.write("\n".join(count_csv_data))
+    #######################################################################
+
