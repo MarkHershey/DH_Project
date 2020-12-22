@@ -1,6 +1,6 @@
 # US Presidential Inaugural Addresses Analysis
 
-02.137 Digital Humanity - Final Project
+HASS 02.137: INTRODUCTION TO DIGITAL HUMANITIES - Final Project
 
 ### Donald J. Trump verses every other US President
 
